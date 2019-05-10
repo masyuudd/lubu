@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_latest" value="name:RID;datatype:real,name:ReceivedDate;datatype:date,name:ReceivedTime;datatype:time,name:DataType;datatype:real,name:StatusPort;datatype:string,name:SamplingDate;datatype:date,name:SamplingTime;datatype:time,name:Temperature;datatype:int,name:Humidity;datatype:int,name:Rain;datatype:int,name:Rain1;datatype:int,name:Rain2;datatype:int,name:Rain3;datatype:int,name:Rain4;datatype:int,name:WLevel;datatype:int,name:WLevel1;datatype:int,name:WLevel2;datatype:int,name:WLevel3;datatype:int,name:WLevel4;datatype:int" />
+</info>

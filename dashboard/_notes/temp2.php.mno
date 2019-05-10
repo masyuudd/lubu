@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_lubu" value="name:ReceivedDate;datatype:date,name:ReceivedTime;datatype:time,name:SamplingDate;datatype:date,name:SamplingTime;datatype:time,name:H;datatype:int,name:Q;datatype:real" />
+</info>

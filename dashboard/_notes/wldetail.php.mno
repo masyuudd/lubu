@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_minusday" value="name:SamplingDate;datatype:date,name:SamplingTime;datatype:time,name:WLevel;datatype:int" />
+</info>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_AgentType" value="name:AgentID;datatype:string,name:AgentName;datatype:string,name:AgentType;datatype:real,name:Sungai;datatype:string,name:Normal;datatype:real,name:SiagaLower;datatype:real,name:SiagaUpper;datatype:real,name:CriticalLower;datatype:real,name:AgentPhone;datatype:string" />
+</info>

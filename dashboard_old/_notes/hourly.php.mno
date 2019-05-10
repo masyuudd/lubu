@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getlastmonth" value="name:month(SamplingDate);datatype:int" />
+	<infoitem key="UD_getformula" value="name:noagent;datatype:int,name:AgentID;datatype:string,name:tanggal;datatype:date,name:a;datatype:real,name:b;datatype:real,name:c;datatype:real,name:author;datatype:string" />
+</info>

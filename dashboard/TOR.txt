@@ -1,0 +1,5 @@
+1. Button untuk tampilkan Tabel Rata2 H & Q pada 1 jam terakhir, + button utk tampilkan grafik + button download table nya dalam excel
+2. Button untuk tampilkan Tabel Rata2 H & Q pada 1 hari kemaren, + button utk tampilkan grafik + button download table nya dalam excel
+3. Button untuk tampilkan Tabel Rata2 H & Q pada 7 hari sebelumnya (weekly), + button utk tampilkan grafik + button download table nya dalam excel
+4. Button untuk tampilkan Tabel Rata2 H & Q pada bulan-bulan sebelumnya, + button utk tampilkan grafik + button download table nya dalam excel
+5. Button untuk Superadmin guna merubah Rumus Kurva H&Q, estimasi akan berubah rumusnya setiap 2 tahun.

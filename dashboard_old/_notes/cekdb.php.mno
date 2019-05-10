@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_cekdb" value="name:noagent;datatype:int,name:AgentID;datatype:string,name:tanggal;datatype:date,name:a;datatype:real,name:b;datatype:real,name:c;datatype:real,name:author;datatype:string" />
+</info>

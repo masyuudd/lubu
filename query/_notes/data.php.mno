@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_time" value="name:noid;datatype:int,name:SamplingTime;datatype:time" />
+	<infoitem key="UD_hari" value="name:dt;datatype:date" />
+</info>

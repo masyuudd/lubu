@@ -1,0 +1,28 @@
+.jpagination { background: green !important }
+
+.jpagination a {
+    text-decoration: none;
+	border: solid 1px #AAE;
+	color: #15B;
+}
+
+.jpagination a, .jpagination span {
+    display: block;
+    float: left;
+    padding: 0 4px;
+    margin-right: 2px;
+}
+
+.jpagination .current {
+    background: #26B;
+    color: #fff;
+	border: solid 1px #AAE;
+	text-shadow: 1px 1px 1px #111;
+}
+
+.jpagination .current.prev, .jpagination .current.next{
+	color:#666;
+	border-color:#999;
+	background: none;
+	text-shadow: 1px 1px 1px #fff;
+}

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_wlagent" value="name:AgentID;datatype:string,name:AgentName;datatype:string,name:AgentPhone;datatype:string,name:AgentLocation;datatype:string,name:AgentType;datatype:real,name:DAS;datatype:string,name:Sungai;datatype:string,name:LRain;datatype:string" />
+	<infoitem key="UD_rgagent" value="name:AgentID;datatype:string,name:AgentName;datatype:string,name:AgentPhone;datatype:string,name:AgentLocation;datatype:string,name:AgentType;datatype:real,name:DAS;datatype:string,name:Sungai;datatype:string,name:LRain;datatype:string" />
+</info>
