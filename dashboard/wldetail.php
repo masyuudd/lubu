@@ -110,6 +110,8 @@ $tipewek = "wldetail.php?type=weekly&lokasi=".$agentname."&name=".$sungai;
 	
 	<!-- start: CSS -->
 	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+	<link id="bootstrap-style" href="css/bootstrap-datepicker.min.css" rel="stylesheet">
+	
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
@@ -118,8 +120,9 @@ $tipewek = "wldetail.php?type=weekly&lokasi=".$agentname."&name=".$sungai;
 	<!-- end: CSS -->
 	
 
-	
-	
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+	<script type="text/javascript" language="javascript" src="js/jquery-1.12.4.js"></script>
 	
 	<script src='js/jquery.dataTables.min.js'></script>
 	<!-- Graph ---->
@@ -154,8 +157,14 @@ $tipewek = "wldetail.php?type=weekly&lokasi=".$agentname."&name=".$sungai;
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-	
-    
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<link id="base-style" href="css/custom.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+	<style>
+	/* Add a black background color to the top navigation */
+
+	</style>
 </head>
 
 <body id="dt_example">
@@ -199,60 +208,50 @@ $tipewek = "wldetail.php?type=weekly&lokasi=".$agentname."&name=".$sungai;
 			
 	<!-- start: Content -->
 
-	<div  class="span10">
+	<div  class="container">
 			
-<?php //require_once("helper/resume_data.php");	?>
+		<?php //require_once("helper/resume_data.php");	?>
 	
-<h1 class="page_title"><?php echo $agentname;  ?></h1>
+		<!-- <h1 class="page_title"><?php echo $agentname;  ?></h1> -->
 
-				<a href="<?php echo $tipehrs; ?>">Hourly </a> |<a href="<?php echo $tipeday; ?>">Daily </a> |<a href="<?php echo $tipemon; ?>"> Monthly </a>|<a href=<?php echo $tipeyer; ?>> Yearly</a>
-				<br>	
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="10%">&nbsp;</td>
-    <td>&nbsp;
+		<div class="row">
+			<div class="topnav">
+				
+				<a class="title" href="#home">
+					<span><?php echo $agentname;  ?></span>
+				</a>
+				
+				<div class="topnav-right">
+						<a class="<?php if($type=='hourly') echo 'active';?>" href="<?php echo $tipehrs; ?>">Hourly </a> 
+						<a class="<?php if($type=='daily') echo 'active';?>" href="<?php echo $tipeday; ?>">Daily </a> 
+						<a class="<?php if($type=='monthly') echo 'active';?>" href="<?php echo $tipemon; ?>"> Monthly </a>
+						<a class="<?php if($type=='yearly') echo 'active';?>" href=<?php echo $tipeyer; ?>> Yearly</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<?php 
+						if($type=="hourly"){			
+							require_once("hourly.php");
+						}
+						if($type=="daily"){			
+							require_once("temp.php");
+						}
+						if($type=="weekly"){			
+							echo $tipewek;
+						}
+						if($type=="monthly"){			
+							require_once("mon.php");
+						}
+						if($type=="yearly"){			
+							require_once("year.php");
+						}
+					?>
+			</div>
+		</div>
 	
-	 <?php 
-			//require_once("temp.php");
-			if($type=="hourly")
-			{			
-			require_once("hourly.php");
-			}
-			if($type=="daily")
-			{			
-			require_once("temp.php");
-			}
-			if($type=="weekly")
-			{			
-			//require_once("mon.php");
-			echo $tipewek;
-			}
-			if($type=="monthly")
-			{			
-			require_once("mon.php");
-			//echo $tipemon;
-			}
-			if($type=="yearly")
-			{			
-			require_once("year.php");
-		
-			}
-			
-			//require_once("helper/idxctn00.php");
-			//require_once("helper/idxctn0.php");
-			//require_once("helper/idxctn1.php");
-			//require_once("helper/idxctn2.php");
-			//require_once("helper/idxctn3.php");
-			//require_once("helper/idxctn4.php");
-			
-			?>
-			<!--/row-->
-			
-	
-	</td>
-  </tr>
-</table>
 
 				
      
@@ -279,11 +278,11 @@ $tipewek = "wldetail.php?type=weekly&lokasi=".$agentname."&name=".$sungai;
 	</div>
 	
 	<div class="clearfix"></div>
-	
+	</br>
 	<footer>
 
 		<p>
-			<span style="text-align:left;float:left"><a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
+			<span style="text-align:left;float:left">&copy; 2019 PT. OMBILIN ELECTRIC POWER</span>
 			
 		</p>
 
@@ -344,10 +343,53 @@ $tipewek = "wldetail.php?type=weekly&lokasi=".$agentname."&name=".$sungai;
 		<script src="js/retina.js"></script>
 
 		<script src="js/custom.js"></script>
+			
+		<script type="text/javascript" language="javascript" src="js/bootstrap-datepicker.min.js"></script>
 	<!-- end: JavaScript-->
+	<script src='js/fnSetFilteringDelay.js'></script>
+
 	
 	
 	<!-- end  javaScript-->
+	<style>
+.align-center{
+	text-align: center;
+}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{
+	height: 32px;
+}
+
+.pstimbul {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.pstimbul .pstimbultext {
+    visibility: hidden;
+    min-width: 100px;
+    background-color: #152121c7;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    /* padding: 15px 15px; */
+    position: absolute;
+    z-index: 1;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+.pstimbul:hover .pstimbultext {
+    visibility: visible;
+}
+div.dt-buttons {
+    position: relative;
+    float: right;
+}
+
+
+</style>
 
 </body>
 </html>

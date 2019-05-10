@@ -19,7 +19,8 @@ if (isset($_GET['accesscheck'])) {
 
 if (isset($_POST['username'])) {
   $loginUsername=$_POST['username'];
-  $password=$_POST['password'];
+  $password=md5($_POST['password']);
+
   $MM_fldUserAuthorization = "level";
   $MM_redirectLoginSuccess = "index.php";
   $MM_redirectLoginFailed = "../index.php";
@@ -28,9 +29,11 @@ if (isset($_POST['username'])) {
   	
   $LoginRS__query=sprintf("SELECT username, password, level FROM users WHERE username='%s' AND password='%s'",
   get_magic_quotes_gpc() ? $loginUsername : addslashes($loginUsername), get_magic_quotes_gpc() ? $password : addslashes($password)); 
-   
+
   $LoginRS = mysql_query($LoginRS__query, $lubu) or die(mysql_error());
+ 
   $loginFoundUser = mysql_num_rows($LoginRS);
+  
   if ($loginFoundUser) {
     
     $loginStrGroup  = mysql_result($LoginRS,0,'level');
@@ -66,6 +69,7 @@ if (isset($_POST['username'])) {
 	
 	<!-- start: CSS -->
 	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+	
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
@@ -153,6 +157,7 @@ if (isset($_POST['username'])) {
 		<script src="js/modernizr.js"></script>
 	
 		<script src="js/bootstrap.min.js"></script>
+		
 	
 		<script src="js/jquery.cookie.js"></script>
 	

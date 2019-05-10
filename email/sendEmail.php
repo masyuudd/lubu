@@ -51,7 +51,7 @@ if ($flag == 1)
 	include "sendEmail-v156.php";
 	include_once "simple_html_dom.php";
 	 
-	$to       = 'candra@lhe.co.id, masyuudd@gmail.com';
+	$to       = 'candra@lhe.co.id';
 	$subject  = 'Reminder : '. date('Y-m-d H:i:s');
 
 	$headers = "From: " . strip_tags($_POST['req-email']) . "\r\n";

@@ -4,7 +4,7 @@ $agentname 	= $_GET['loc'];
 error_reporting( 0 );
 
 // Connect to MySQL
-$link = mysql_connect( 'localhost', 'hydrocom_ffws', 'hydrosix292' );
+$link = mysql_connect( 'localhost', 'root', '' );
 if ( !$link ) {
   die( 'Could not connect: ' . mysql_error() );
 }
@@ -16,7 +16,9 @@ if ( !$db ) {
 }
 
 // Fetch the data
-$query = "SELECT SamplingDate, AVG( WLevel ) as WLevel, AVG(WLevel)*0.5 as WLevel2 FROM $agentname GROUP BY date( SamplingDate )";
+$query = "SELECT SamplingDate, AVG( WLevel ) as WLevel, AVG(WLevel)*0.5 as WLevel2 FROM $agentname 
+-- WHERE SamplingDate between '2017-08-01' AND '2017-08-30'
+GROUP BY date( SamplingDate )";
 $result = mysql_query( $query );
 
 // All good?
@@ -31,8 +33,8 @@ if ( !$result ) {
 
 $a = "[\n";
 while ( $row = mysql_fetch_assoc( $result ) ) {
-	$wlevel1 = number_format($row['WLevel'],2,'.',',');
-	$wlevel2 = number_format($row['WLevel'],2,'.',',');
+	$wlevel1 = number_format($row['WLevel'],2,'.','');
+	$wlevel2 = number_format($row['WLevel'],2,'.','');
 	$a = $a . " {\n";
 	$a = $a . '  "date": "' . $row['SamplingDate'] . '",' . "\n";
 	$a = $a .'  "visits": ' . $wlevel1 . ',' . "\n";

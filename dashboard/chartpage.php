@@ -105,7 +105,7 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
 
 	
 	
-	
+	<script src="js/rgraph/jquery.min.js"></script>
 	<script src='js/jquery.dataTables.min.js'></script>
 	<!-- Graph ---->
 	<script src="js/excanvas.js"></script>
@@ -121,7 +121,7 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
     <script src="js/rgraph/RGraph.common.tooltips.js"></script>
 	<script src="js/rgraph/RGraph.bar.js"></script>
 	<script src="js/rgraph/RGraph.line.js"></script>
-	<script src="js/rgraph/jquery.min.js"></script>
+	
 	
 	<!-- end: J
 	

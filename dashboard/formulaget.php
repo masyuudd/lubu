@@ -4,7 +4,7 @@
 try
 {
 	//Open database connection
-	$con = mysql_connect("localhost","hydrocom_ffws","hydrosix292");
+	$con = mysql_connect("localhost","root","");
 	mysql_select_db("tfwsmg", $con);
 
 	//Getting records (listAction)
@@ -80,9 +80,10 @@ try
 		$jTableResult = array();
 		$jTableResult['Result'] = "OK";
 		print json_encode($jTableResult);
-	}
+	}else
 	//Deleting a record (deleteAction) blade
 	{
+		echo  $_POST["noagent"];
 		//Delete from database
 		$result = mysql_query("DELETE FROM tabelformula WHERE noagent = " . $_POST["noagent"] . ";");
 

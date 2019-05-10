@@ -14,6 +14,10 @@
             jQuery.browser.version = RegExp.$1;
         }
     })();
+	
+	jQuery.curCSS = function(element, prop, val) {
+		return jQuery(element).css(prop, val);
+	};
 </script>
     <script src="setting/scripts/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script src="setting/scripts/jtable/jquery.jtable.js" type="text/javascript"></script>

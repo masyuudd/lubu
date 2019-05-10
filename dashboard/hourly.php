@@ -86,7 +86,7 @@ $select_year = mysql_query($query_dropdown_yr, $lubu) or die(mysql_error());
 </style>
 
 <script type="text/javascript" language="javascript" src="js/jquery-1.12.4.js"></script>
-<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
+<!-- <script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script> -->
 <script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
 
 <script type="text/javascript" language="javascript" src="jsexp/jquery-1.12.4.js"></script>
@@ -100,15 +100,177 @@ $select_year = mysql_query($query_dropdown_yr, $lubu) or die(mysql_error());
 <script type="text/javascript" language="javascript" src="jsexp/buttons.print.min.js"></script>
 
 <script>
+
 $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ],
-		"aaSorting": [[0,'desc']]
-    } );
+	var startDate = new Date('01/01/2012');
+	var FromEndDate = new Date();
+	var ToEndDate = new Date();
+
+	ToEndDate.setDate(ToEndDate.getDate()+365);
+	$('#from').datepicker({
+		weekStart: 1,
+		startDate: '01/01/2017',
+		endDate: FromEndDate, 
+		autoclose: true
+	})
+	.on('changeDate', function(selected){
+		// alert(selected);
+			startDate = new Date(selected.date.valueOf());
+			startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+			$('#to').datepicker('setStartDate', startDate);
+	}); 
+	$('#to')
+	.datepicker({
+
+			weekStart: 1,
+			startDate: startDate,
+			endDate: ToEndDate,
+			autoclose: true
+	})
+	.on('changeDate', function(selected){
+			FromEndDate = new Date(selected.date.valueOf());
+			FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+			$('#from').datepicker('setEndDate', FromEndDate);
+	});
+	dtinitialize();
+
+    // $('#example').DataTable( {
+    //     dom: 'Bfrtip',
+    //     buttons: [
+    //         'copy', 'csv', 'excel', 'pdf', 'print'
+    //     ],
+		// "aaSorting": [[0,'desc']]
+    // } );
+
+	// $('#post_list').dataTable({
+	// 		"bProcessing": true,
+	// 		"serverSide": true,
+	// 	
+	// 		"ajax":{
+	// 			url :"serverside.php",
+	// 			type: "POST",
+	// 			error: function(){
+	// 				$("#post_list_processing").css("display","none");
+	// 			}
+	// 		}
+	// 	});
+
+	
 } );
+function cari(){
+	dtinitialize();
+	return false;
+}
+function dtinitialize() {
+
+	var a = "<?php echo $a; ?>";
+	var b = "<?php echo $b; ?>";
+	var c = "<?php echo $c; ?>";
+
+	var columns = [
+		{ "data": "ReceivedDate","sClass": "ecol details-control align-center", searchable: false, orderable: true },
+		{ "data": "ReceivedTime","sClass": "ecol align-center details-control" ,searchable: true, orderable: true },
+		{ "data": "SamplingDate","sClass": "ecol details-control align-center", searchable: false, orderable: true },
+		{ "data": "SamplingTime","sClass": "ecol align-center details-control" ,searchable: true, orderable: true },
+		
+		{ "data": "WLevel","sClass": "ecol align-center details-control" ,searchable: true, orderable: true ,"render": function(data,type,row) {
+
+			edval=parseFloat(row.WLevel).toFixed(2);;
+
+			return edval;
+		}},
+		{ "data": "WLevel","sClass": "ecol align-center details-control" ,searchable: true, orderable: true ,"render": function(data,type,row) {
+			var x = parseFloat(row.WLevel)/100;  
+			var d = x+parseFloat(a);
+			var da = Math.pow(d,parseFloat(b));
+			var e  = parseFloat(c)*da;
+			var edval = "";	
+			edval = '<div class="pstimbul">'+
+								'<div align = "center">'+ parseFloat(e).toFixed(2) +'</div>'+
+								'<span class="pstimbultext">'+
+									'<br> a : '+parseFloat(a)+'<br> b : '+parseFloat(b)+'<br>c : '+parseFloat(c)+
+		  					'</span>'+
+							'</div>';
+
+			return edval;
+		}}
+
+	];
+
+
+	xtab=generatesDatatable('post_list',columns,"serverside/hourly.php",true);
+};
+
+
+function generatesDatatable(cdiv,columns,dbsource ,tabnum, cari   ){
+	var from = $("#from").val();
+	var to = $("#to").val();
+	// alert(from);
+	var agentname = "<?php echo $agentname; ?>";
+	var sungai = "<?php echo $sungai; ?>";
+	var xtab=$('#'+cdiv).dataTable({
+		dom: 'Blfrtip',
+    buttons: [
+      'copy', 'csv', 'excel', 'pdf', 'print'
+		],
+		"lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		"searching": false,
+		// "bLengthChange" : true,
+		"bProcessing": true,
+		"bInfo": true,
+		"ordering": true,
+		"columns": columns ,
+		"bServerSide":true,
+		"aaSorting": [[0,'desc']],
+		"bDestroy": true,//====> untuk reload data
+		"sAjaxSource": dbsource,
+		"iDisplayLength": 10,
+		"rowCallback": function( row, data, iDisplayIndex ) {
+			
+			if (tabnum){
+				var info = xtab.api().page.info();
+				var page = info.page;
+				var length = info.length;
+				var index = (page * length + (iDisplayIndex +1));
+				// $('td:eq(0)', row).html(index);
+			}
+		},
+
+		"fnInitComplete": function () {
+			xtab.fnAdjustColumnSizing();
+			
+		},
+		"createdRow": function (row, data, rowIndex) {
+			// console.log(data);
+			// Per-cell function to do whatever needed with cells
+			$.each($('td', row), function (colIndex) {
+				// For example, adding data-* attributes to the cell
+				$(this).attr('data-title', columns[colIndex]["data-title"]);
+			});
+		},
+		'fnServerData': function (sSource, aoData, fnCallback) {
+			
+			aoData.push(
+				{ name: 'agentname', value: agentname },
+				{ name: 'sungai', value: sungai },
+				{ name: 'from', value: from },
+				{ name: 'to', value: to }
+			);
+		
+			$.ajax({
+								'dataType': 'json',
+								'type': 'POST',
+								'url': sSource,
+								'data': aoData,
+								'success': fnCallback
+						});
+		}
+	});
+	xtab.dataTable().fnSetFilteringDelay(1000);
+	return xtab;
+
+	
+}
 </script>
 
 <script>
@@ -152,48 +314,33 @@ $(document).ready(function() {
 
 <div class="row-fluid">
 
-<select id="fthn" name="list" size="1" onChange="pungsi()">
-   		<?php while ($row = mysql_fetch_assoc($select_year)) {
-			
-				echo '<option value="'.$row['tahun'].'">'.$row['tahun'].'</option>';
-			}
-		
-		?>
-   		<!--<option value="2019" selected="selected">2019</option>
-		<option value="2018">2018</option>
-		<option value="2017">2017</option>
-		<option value="2016">2016</option>
-		<option value="2015">2015</option>
-		<option value="2014">2014</option>
-		<option value="2013">2013</option>
-		<option value="2012">2012</option>
-		<option value="2011">2011</option>
-		<option value="2010">2010</option>
-		<option value="2009">2009</option>-->
-</select>
-	
-<select id="fbln" name="list" size="1" onChange="pungsi()">
-   		<option value="-01">Jan</option>
-		<option value="-02">Feb</option>
-		<option value="-03">Mar</option>
-		<option value="-04">Apr</option>
-		<option value="-05">May</option>
-		<option value="-06">Jun</option>
-		<option value="-07">Jul</option>
-		<option value="-08">Aug</option>
-		<option value="-09">Sep</option>
-		<option value="-10">Okt</option>
-		<option value="-11">Nop</option>
-		<option value="-12">Des</option>
-</select>
+	<form class="form-inline">
+		<div class="form-group">
+			<label for="from">From :</label>
+			<input type="text" class="form-control datepicker"  id="from" name="from">
+		</div>
+		<div class="form-group">
+			<label for="to">to:</label>
+			<input type="text" class="form-control datepicker" id="to" name="to">
+		</div>
+		<button type="button" onclick="cari()" class="btn btn-default">Search</button>
+	</form>
+
+	<table id="post_list" class="dataTable table table-striped" width="100%" cellspacing="0">
+	<thead>
+		<tr>
+			<th>ReceivedDate</th>
+			<th>ReceivedTime</th>
+			<th>SamplingDate</th>
+			<th>SamplingTime</th>
+			<th>H</th>
+			<th>Q</th>
+		</tr>
+	</thead>
  
-<label>
-	<input name="btclear" type="button" id="btclear" onClick="fclear_sel()" value="Clear" />
-</label>
+</table>
 
-
-
-<table id="example" class="display nowrap" cellspacing="0" width="100%">
+<!-- <table id="example" class="display nowrap" cellspacing="0" width="100%">
   <thead>
   <tr>
 	<th>Tahun</th>
@@ -235,7 +382,7 @@ $(document).ready(function() {
     </tr>
     <?php } while ($row_mon = mysql_fetch_assoc($mon)); ?>
 	</tbody>
-</table>
+</table> -->
 
 </div>
 
