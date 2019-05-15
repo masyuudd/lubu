@@ -99,7 +99,7 @@ var c = "<?php echo $c; ?>";
 
 var columns = [
 	{ "data": "tahun","sClass": "ecol details-control align-center", searchable: false, orderable: true },
-	{ "data": "bulan","sClass": "ecol details-control align-center", searchable: false, orderable: true },
+	{ "data": "bulan","sClass": "ecol details-control align-center", searchable: false, orderable: false },
 
 	{ "data": "WLevel","sClass": "ecol align-center details-control" ,searchable: true, orderable: true ,"render": function(data,type,row) {
 
