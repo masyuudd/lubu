@@ -168,10 +168,10 @@ function dtinitialize() {
 	var c = "<?php echo $c; ?>";
 
 	var columns = [
-		{ "data": "ReceivedDate","sClass": "ecol details-control align-center", searchable: false, orderable: true },
-		{ "data": "ReceivedTime","sClass": "ecol align-center details-control" ,searchable: true, orderable: true },
-		{ "data": "SamplingDate","sClass": "ecol details-control align-center", searchable: false, orderable: true },
-		{ "data": "SamplingTime","sClass": "ecol align-center details-control" ,searchable: true, orderable: true },
+		{ "data": "ReceivedDate","sClass": "ecol details-control align-center", searchable: true, orderable: true },
+		{ "data": "ReceivedTime","sClass": "ecol align-center details-control" ,searchable: true, orderable: false },
+		{ "data": "SamplingDate","sClass": "ecol details-control align-center", searchable: true, orderable: true },
+		{ "data": "SamplingTime","sClass": "ecol align-center details-control" ,searchable: true, orderable: false },
 		
 		{ "data": "WLevel","sClass": "ecol align-center details-control" ,searchable: true, orderable: true ,"render": function(data,type,row) {
 

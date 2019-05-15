@@ -44,14 +44,22 @@
 		$sqlTot .= $where_condition;
 		$sqlRec .= $where_condition;
 	}
+
+	$order2 = "";
+	if($params['iSortCol_0']=="0"){
+		$order2 = ", ReceivedTime " .$params['sSortDir_0'];
+	}else if($params['iSortCol_0']=="2"){
+		$order2 = ", SamplingTime " .$params['sSortDir_0'];
+	}
+
     $length = $params['iDisplayLength'];
     if($length > 0 ){
-        $sqlRec .=  " ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']."  LIMIT ".$params['iDisplayStart']." ,".$length." ";
+        $sqlRec .=  " ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']."  ".$order2 ." LIMIT ".$params['iDisplayStart']." ,".$length." ";
     }else{
-        $sqlRec .=  " ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']." ";
+        $sqlRec .=  " ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']." ".$order2 ." ";
     }
     $sqlTot .=  " ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']." ";
-    //  echo $sqlRec;
+	// var_dump($sqlRec);exit;
 	$queryTot = mysqli_query($con, $sqlTot) or die("Database Error:". mysqli_error($con));
 
 	$totalRecords = mysqli_num_rows($queryTot);

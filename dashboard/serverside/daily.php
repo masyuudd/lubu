@@ -59,7 +59,7 @@
     }else{
         $sqlRec .=  "GROUP BY date( SamplingDate ),Hour(SamplingTime) ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']." ";
     }
- 	//var_dump($sqlRec);exit;
+ 
 	$sqlTot .= "GROUP BY date( SamplingDate ),Hour(SamplingTime)";
 	$queryTot = mysqli_query($con, $sqlTot) or die("Database Error:". mysqli_error($con));
 
