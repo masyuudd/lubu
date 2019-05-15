@@ -4,7 +4,7 @@ $agentname 	= $_GET['loc'];
 error_reporting( 0 );
 
 // Connect to MySQL
-$link = mysql_connect( 'localhost', 'root', '' );
+$link = mysql_connect( 'localhost', 'hydrocom_ffws', 'hydrosix292' );
 if ( !$link ) {
   die( 'Could not connect: ' . mysql_error() );
 }
@@ -17,7 +17,6 @@ if ( !$db ) {
 
 // Fetch the data
 $query = "SELECT SamplingDate, AVG( WLevel ) as WLevel, AVG(WLevel)*0.5 as WLevel2 FROM $agentname 
--- WHERE SamplingDate between '2017-08-01' AND '2017-08-30'
 GROUP BY date( SamplingDate )";
 $result = mysql_query( $query );
 

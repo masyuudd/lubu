@@ -204,7 +204,7 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
 			<!--/.fluid-container-->
 
 			<!-- Modal Add New User -->
-			<div id="AddNew" class="modal fade" role="dialog" style="display: none;">
+			<div id="AddNew" class="modal fade md-form success" role="dialog" style="display: none;">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -277,7 +277,7 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
 			</div>
 
 			<!-- Modal Edit User -->
-			<div id="ModalEdit" class="modal fade" role="dialog" style="display: none;">
+			<div id="ModalEdit" class="modal fade md-form success" role="dialog" style="display: none;">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->

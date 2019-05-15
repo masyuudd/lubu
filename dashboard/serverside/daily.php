@@ -44,12 +44,22 @@
 	}
 	
 	$length = $params['iDisplayLength'];
+	$order2 = "";
+	
+	if($params['iSortCol_0']=="0"){
+		$order2 = ", Hour(SamplingTime) " .$params['sSortDir_0'];
+	}
+	
+	
 	if($length > 0 ){
-		$sqlRec .=  "GROUP BY date( SamplingDate ),Hour(SamplingTime) ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']."  LIMIT ".$params['iDisplayStart']." ,".$params['iDisplayLength']." ";
+		$sqlRec .=  "GROUP BY date( SamplingDate ),Hour(SamplingTime) 
+		ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']."  
+		".$order2."
+		LIMIT ".$params['iDisplayStart']." ,".$params['iDisplayLength']." ";
     }else{
         $sqlRec .=  "GROUP BY date( SamplingDate ),Hour(SamplingTime) ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']." ";
     }
- 	
+ 	//var_dump($sqlRec);exit;
 	$sqlTot .= "GROUP BY date( SamplingDate ),Hour(SamplingTime)";
 	$queryTot = mysqli_query($con, $sqlTot) or die("Database Error:". mysqli_error($con));
 

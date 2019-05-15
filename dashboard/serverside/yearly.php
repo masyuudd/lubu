@@ -43,11 +43,11 @@
 	}
     $length = $params['iDisplayLength'];
     if($length > 0 ){
-        $sqlRec .=  " GROUP BY MONTH( SamplingDate ) ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']."  LIMIT ".$params['iDisplayStart']." ,".$length." ";
+        $sqlRec .=  " GROUP BY tahun, bulan ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']."  LIMIT ".$params['iDisplayStart']." ,".$length." ";
     }else{
-        $sqlRec .=  " GROUP BY MONTH( SamplingDate ) ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']." ";
+        $sqlRec .=  " GROUP BY tahun, bulan ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']." ";
     }
-    $sqlTot .=  " GROUP BY MONTH( SamplingDate ) ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']." ";
+    $sqlTot .=  " GROUP BY tahun, bulan ORDER BY ". $columns[$params['iSortCol_0']]."   ".$params['sSortDir_0']." ";
     //  echo $sqlRec;
 	$queryTot = mysqli_query($con, $sqlTot) or die("Database Error:". mysqli_error($con));
 

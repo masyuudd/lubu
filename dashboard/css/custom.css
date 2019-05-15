@@ -50,9 +50,6 @@ text-transform: uppercase;
 	float: right;
 }
 
-.modal-title{
-	font-size: xx-large;
-}
 
 
 /* bootbox modal custom */
@@ -92,6 +89,10 @@ text-transform: uppercase;
 	color: #fff;
 }
 
+.md-form .modal-title{
+	font-size: 24px;
+	text-align: center;
+}
 .error .modal-header{
 	background-color: #e85e6c;
 	color: #fff;	

@@ -4,7 +4,7 @@
 try
 {
 	//Open database connection
-	$con = mysql_connect("localhost","root","");
+	$con = mysql_connect( 'localhost', 'hydrocom_ffws', 'hydrosix292' );
 	mysql_select_db("tfwsmg", $con);
 
 	//Getting records (listAction)
